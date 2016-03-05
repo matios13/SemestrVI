@@ -14,9 +14,11 @@ do
 	if [ -d $1/$file ]
 	then
 		for file2 in `ls $1`
-		lista = `ls $1/$file`
 		do
-		 ! [ $file == $file2 ] && [ `ls $1/$file` == 2 ] && echo "katalogi z tymi samimi obiektami $1 i $2"	
+			if ! [ $file == $file2 ] && diff $1/$file $1/$file2 >/dev/null
+			then
+				echo "katalogi z tymi samimi obiektami $file i $file2"
+			fi
 		done
 	fi
 done
